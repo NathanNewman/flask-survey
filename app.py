@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from flask_debugtoolbar import DebugToolbarExtension
 import surveys
 
 app = Flask(__name__)
 
-responses = []
-counter = -1
+response = []
+if session["satisfaction"]:
+    responses = session["satisfaction"]
 
 
 @app.route('/')
@@ -15,11 +16,11 @@ def load_home():
 
 @app.route('/satisfaction_survey', methods=["GET"])
 def load_survey():
-    answers = request.args
-    if answers:
-        global counter
-        counter += 1
-        responses.append(answers)
+    answer = request.args
+    counter = len(responses) - 1
+    if answer:
+        responses.append(answer)
+        session["satisfaction"] = responses
     survey = surveys.satisfaction_survey
     questions = survey.questions
     render_template("survey.html")
