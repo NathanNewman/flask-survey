@@ -1,0 +1,16 @@
+{% extends 'survey.html' %}
+{% block content %} 
+<p>{{question.question}}</p>
+{% for choice in question.choices %}
+      <input type="radio" id="{{choice}}" name="{{question.question}}" value="{{choice}}" />
+      <label for="{{choice}}">{{choice}}</label>
+      {% endfor %}
+
+{% endblock %}
+
+<!-- {% for question in questions %}
+      <p>{{question.question}}</p>
+      {% for answer in question.choices %}
+      <input type="radio" id="{{answer}}" name="{{question.question}}" value="{{answer}}" />
+      <label for="{{answer}}">{{answer}}</label>
+      {% endfor %} {% endfor %} -->

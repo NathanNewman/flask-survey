@@ -13,14 +13,11 @@
       or
       <a href="/">Return to Homepage</a>.
     </p>
-    {% for question in questions %}
     <form>
-      <p>{{question}}</p>
-      {% for answer in question %}
-      <input type="radio" id="{{answer}}" name="answer" value="{{answer}}" />
-      <label for="{{answer}}">{{answer}}</label>
-      {% endfor %}
+      {% block content %} 
+      {% endblock %} 
+      <br>
+      <button type="submit">Submit</button>
     </form>
-    {% endfor %}
   </body>
 </html>
